@@ -221,3 +221,8 @@ body {
 .book-published-datel {
   margin-right: 10px;
 }
+
+#sort-options {
+  padding: 8px;
+  border-radius: 10px;
+}

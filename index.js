@@ -1,10 +1,11 @@
 const bookList = document.querySelector(".book-list");
 const input = document.querySelector(".search-input"); // Ensure correct selector
 const toggleBtn = document.querySelector(".view-toggle");
+const sortOptions = document.querySelector("#sort-options");
+const footer = document.querySelector(".footer-section");
 
 async function fetchBooks() {
-  const url =
-    "https://api.freeapi.app/api/v1/public/books?page=1&limit=100&inc=kind%252Cid%252Cetag%252CvolumeInfo&query=tech";
+  const url = `https://api.freeapi.app/api/v1/public/books?limit=${postPerPage}&skip-${skip}&inc=kind%252Cid%252Cetag%252CvolumeInfo&query=tech`;
   const options = { method: "GET", headers: { accept: "application/json" } };
 
   try {
@@ -13,6 +14,7 @@ async function fetchBooks() {
     console.log(data);
 
     const allBooks = data.data.data;
+
     createBooks(allBooks);
   } catch (error) {
     console.error(error);
@@ -23,8 +25,10 @@ function createBooks(books) {
   bookList.innerHTML = "";
   const searchTerm = input.value.toLowerCase().trim();
 
-  let booksFound = false;
+  console.log(sortOptions.value);
 
+  let booksFound = false;
+  compareBooks(books);
   books.forEach((book) => {
     const desc = book.volumeInfo.description
       ? book.volumeInfo.description.toLowerCase()
@@ -89,6 +93,7 @@ function createBooks(books) {
     noResultsMessage.textContent = "No books found matching your search.";
     noResultsMessage.style.color = "red";
     noResultsMessage.style.textAlign = "center";
+
     bookList.appendChild(noResultsMessage);
   }
 }
@@ -195,3 +200,22 @@ viewToggle.addEventListener("click", () => {
     });
   }
 });
+
+function compareBooks(books) {
+  books.sort((a, b) => {
+    if (sortOptions.value === "title") {
+      return a.volumeInfo.title.localeCompare(b.volumeInfo.title);
+    }
+    if (sortOptions.value === "author") {
+      return (a.volumeInfo.authors?.[0] || "").localeCompare(
+        b.volumeInfo.authors?.[0] || ""
+      );
+    }
+    if (sortOptions.value === "date") {
+      return (
+        new Date(a.volumeInfo.publishedDate) -
+        new Date(b.volumeInfo.publishedDate)
+      );
+    }
+  });
+}
