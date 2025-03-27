@@ -5,7 +5,8 @@ const sortOptions = document.querySelector("#sort-options");
 const footer = document.querySelector(".footer-section");
 
 async function fetchBooks() {
-  const url = `https://api.freeapi.app/api/v1/public/books?limit=${postPerPage}&skip-${skip}&inc=kind%252Cid%252Cetag%252CvolumeInfo&query=tech`;
+  const url =
+    "https://api.freeapi.app/api/v1/public/books?page=1&limit=10&inc=kind%252Cid%252Cetag%252CvolumeInfo&query=tech";
   const options = { method: "GET", headers: { accept: "application/json" } };
 
   try {
