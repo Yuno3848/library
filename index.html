@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="header-container">
+        <div class="logo-container">
+          <i class="fas fa-book-open"></i>
+          <h1>Book Library</h1>
+        </div>
+        <div class="search-container">
+          <input
+            class="search-input"
+            type="text"
+            placeholder="Search books, authors, genres..."
+          />
+          <button class="view-toggle">
+            <i class="fas fa-th"></i> switch view
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- end of header -->
+
+    <!-- main -->
+    <section class="main-section">
+      <div class="book-list" id="bookList">
+        <!-- Books will be dynamically added here -->
+      </div>
+    </section>
+
+    <!-- Book Template Grid View-->
+    <template id="bookTemplate">
+      <div class="book-item">
+        <div class="book-cover">
+          <img src="" alt="Book Cover" />
+        </div>
+        <div class="book-details">
+          <h2 class="book-title">Book Title</h2>
+          <div class="book-author">Author Name</div>
+          <div class="book-meta">
+            <span class="book-publisher">Publisher</span>
+            <span class="book-published-date">Published Date</span>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Book Template List View -->
+    <!-- <template id="bookTemplatel">
+      <div class="book-iteml">
+        <div class="book-coverl">
+          <img src="" alt="Book Coverl" />
+        </div>
+        <div class="book-detailsl">
+          <h2 class="book-titlel">Book Title</h2>
+          <div class="book-authorl">Author Name</div>
+          <div class="book-metal">
+            <span class="book-publisherl">Publisher</span>
+            <span class="book-published-datel">Published Date</span>
+          </div>
+        </div>
+      </div>
+    </template> -->
+    <script src="./index.js"></script>
+  </body>
+</html>
